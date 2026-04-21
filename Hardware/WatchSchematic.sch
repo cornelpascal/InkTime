@@ -3930,6 +3930,10 @@ Source: &lt;a href="https://componentsearchengine.com/Datasheets/1/USBLC6-2SC6Y.
 <sheets>
 <sheet>
 <plain>
+<text x="137.16" y="0" size="5.08" layer="97">SWD</text>
+<text x="-157.48" y="-5.08" size="5.08" layer="97">IMU</text>
+<text x="-154.94" y="99.06" size="5.08" layer="97">DC/DC</text>
+<text x="-142.24" y="162.56" size="5.08" layer="97">LiPo Charger</text>
 </plain>
 <instances>
 <instance part="U1" gate="G$1" x="25.4" y="41.91" smashed="yes">
@@ -5355,6 +5359,14 @@ Source: &lt;a href="https://componentsearchengine.com/Datasheets/1/USBLC6-2SC6Y.
 </sheet>
 <sheet>
 <plain>
+<text x="-175.26" y="111.76" size="5.08" layer="97">E-Paper Drive Circuit</text>
+<text x="53.34" y="91.44" size="5.08" layer="97">Haptic
+Driver</text>
+<text x="68.58" y="45.72" size="5.08" layer="97">Buttons</text>
+<text x="-15.24" y="38.1" size="5.08" layer="97">Fuel Gauge</text>
+<text x="-157.48" y="-12.7" size="5.08" layer="97">E-Paper Display Connector</text>
+<text x="-43.18" y="-33.02" size="5.08" layer="97">USB C Connector &amp; ESD
+Protection</text>
 </plain>
 <instances>
 <instance part="FRAME1" gate="G$1" x="-195.58" y="-134.62" smashed="yes">
@@ -6352,6 +6364,10 @@ Source: &lt;a href="https://componentsearchengine.com/Datasheets/1/USBLC6-2SC6Y.
 </schematic>
 </drawing>
 <compatibility>
+<note version="6.3" minversion="6.2.2" severity="warning">
+Since Version 6.2.2 text objects can contain more than one line,
+which will not be processed correctly with this version.
+</note>
 <note version="8.3" severity="warning">
 Since Version 8.3, EAGLE supports the association of 3D packages
 with devices in libraries, schematics, and board files. Those 3D
