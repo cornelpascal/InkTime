@@ -93,22 +93,57 @@ USB-C -----------------> | USB ESD Protection   |
 
 ## Bill of Materials
 
-BOM-ul complet exportat pentru manufacturing este in [`Manufacturing/bom.csv`](Manufacturing/bom.csv). Tabelul de mai jos listeaza componentele functionale principale care definesc designul.
+BOM-ul complet exportat pentru manufacturing este in [`Manufacturing/bom.csv`](Manufacturing/bom.csv). Tabelul de mai jos listeaza componentele functionale principale, iar coloana `JLC Parts` foloseste fie linkul exact extras din proiect, fie portalul JLC Parts pentru cautarea manuala dupa MPN atunci cand codul JLC nu apare explicit in export.
 
-| Ref | Part | Rol | Procurement | Datasheet |
+| Ref | Part | Rol | JLC Parts | Datasheet |
 | --- | --- | --- | --- | --- |
 | `U1` | nRF52840 | MCU principal BLE/USB | https://jlcpcb.com/partdetail/JLCPCBAssembly-nRF52840/C9900031370 | https://www.nordicsemi.com/-/media/Software-and-other-downloads/Product-Briefs/nRF52840-product-brief.pdf |
 | `IC1` | BQ25180YBGR | Charger / PMIC pentru o singura celula | https://jlcpcb.com/partdetail/TexasInstruments-BQ25180YBGR/C3682423 | https://www.ti.com/lit/ds/symlink/bq25180.pdf |
 | `IC9` | RT6160AWSC | Regulator buck-boost 3.3 V | https://jlcpcb.com/partdetail/C7065276 | https://www.richtek.com/assets/product_file/RT6160A=RTQ2520A/DS6160A-05.pdf |
 | `U3` | MAX17048G+T10 | Fuel gauge pentru baterie | https://jlcpcb.com/partdetail/MaximIntegrated-MAX17048GT10/C2682616 | https://www.analog.com/media/en/technical-documentation/data-sheets/MAX17048-MAX17049.pdf |
-| `IC3` | BMA423 | Accelerometru pe 3 axe | https://www.mouser.com/ProductDetail/Bosch-Sensortec/BMA423 | https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bma423-ds000.pdf |
 | `IC2` | DRV2605YZFR | Driver haptic | https://jlcpcb.com/partdetail/TexasInstruments-DRV2605YZFR/C81079 | https://www.ti.com/lit/ds/symlink/drv2605.pdf |
-| `ANT1` | 2450AT18B100E | Antena chip 2.4 GHz | https://www.mouser.com/ProductDetail/Johanson-Technology/2450AT18B100E | https://www.johansontechnology.com/datasheets/2450AT18B100.pdf |
-| `J1` | Molex 503480-2400 | Conector FPC 24 pini pentru display | https://www.mouser.com/ProductDetail/Molex/503480-2400 | https://www.molex.com/pdm_docs/sd/5034802400_sd.pdf |
-| `J2` | TC2030-IDC | Conector de programare | https://www.tag-connect.com/product/tc2030-idc | https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/TC2030-IDC-NL.pdf |
-| `J4` | KH-TYPE-C-16P | Receptacul USB-C | https://www.snapeda.com/parts/KH-TYPE-C-16P/Kinghelm/view-part/ | https://atta.szlcsc.com/upload/public/pdf/source/20230720/8A9E0F0B650D1A2FD53D4D542E2F6B37.pdf |
-| `D3` | USBLC6-2SC6Y | Protectie ESD pentru USB | https://www.snapeda.com/parts/USBLC6-2SC6Y/STMicroelectronics/view-part/ | https://www.st.com/resource/en/datasheet/usblc6-2.pdf |
-| `SW_UP`, `SW_ENT`, `SW_DN` | Panasonic EVP-AKE31A | Butoane user | https://www.digikey.com/en/products/detail/panasonic-electronic-components/EVP-AKE31A/1024355 | https://industry.panasonic.com/cdbs/www-data/pdf/ASQ0000/ASQ0000CE50.pdf |
+| `L7` | FTC252012SR47MBCA | Inductor pentru buck-boost | https://jlcpcb.com/partdetail/6763488-FTC252012SR47MBCA/C5832368 | https://product.tdk.com/system/files/dam/doc/product/inductor/inductor/smd/catalog/inductor_commercial_power_mlp2016_en.pdf |
+| `IC3` | BMA423 | Accelerometru pe 3 axe | https://jlcpcb.com/parts | https://www.bosch-sensortec.com/media/boschsensortec/downloads/datasheets/bst-bma423-ds000.pdf |
+| `ANT1` | 2450AT18B100E | Antena chip 2.4 GHz | https://jlcpcb.com/parts | https://www.johansontechnology.com/datasheets/2450AT18B100.pdf |
+| `J1` | Molex 503480-2400 | Conector FPC 24 pini pentru display | https://jlcpcb.com/parts | https://www.molex.com/pdm_docs/sd/5034802400_sd.pdf |
+| `J2` | TC2030-IDC | Conector de programare Tag-Connect | https://jlcpcb.com/parts | https://www.tag-connect.com/wp-content/uploads/bsk-pdf-manager/TC2030-IDC-NL.pdf |
+| `J4` | KH-TYPE-C-16P | Receptacul USB-C | https://jlcpcb.com/parts | https://atta.szlcsc.com/upload/public/pdf/source/20230720/8A9E0F0B650D1A2FD53D4D542E2F6B37.pdf |
+| `D3` | USBLC6-2SC6Y | Protectie ESD pentru USB | https://jlcpcb.com/parts | https://www.st.com/resource/en/datasheet/usblc6-2.pdf |
+| `SW_UP`, `SW_ENT`, `SW_DN` | Panasonic EVP-AKE31A | Butoane user | https://jlcpcb.com/parts | https://industry.panasonic.com/cdbs/www-data/pdf/ASQ0000/ASQ0000CE50.pdf |
+
+## Alocare Pini nRF52840
+
+Tabelul urmator documenteaza alocarile efective observate in schema pentru `U1` (`nRF52840`).
+
+| Pin nRF52840 | Net / semnal | Utilizare in design |
+| --- | --- | --- |
+| `P0.00` | `XL1` | Terminal cristal LF 32.768 kHz |
+| `P0.01` | `XL2` | Terminal cristal LF 32.768 kHz |
+| `P0.02` | `SCK` | SPI clock pentru display-ul e-paper |
+| `P0.03` | `MOSI` | SPI MOSI pentru display-ul e-paper |
+| `P0.05` | `EPD_CS` | Chip select pentru display |
+| `P0.06` | `SDA` | I2C SDA comun pentru PMIC, fuel gauge, haptic si alte periferice I2C |
+| `P0.07` | `SCL` | I2C SCL comun pentru PMIC, fuel gauge, haptic si alte periferice I2C |
+| `P0.08` | `IMU_INT1` | Intrerupere principala de la `BMA423` |
+| `P0.10` | `ALERT` | Semnal `ALERT` de la `MAX17048` |
+| `P0.11` | `PMIC_INT` | Intrerupere de la `BQ25180` |
+| `P0.12` | `HAPTIC_EN` | Enable pentru `DRV2605` |
+| `P0.13` | `P0.13` | Intrare buton `SW_UP` |
+| `P0.14` | `P0.14` | Intrare buton `SW_ENT` |
+| `P0.15` | `EPD_DC` | Linia data/command pentru display |
+| `P0.16` | `EPD_RST` | Reset hardware pentru display |
+| `P0.17` | `EPD_BUSY` | Busy/status de la display |
+| `P0.18` | `RESET` | Reset extern, dus si la Tag-Connect (`J2`) |
+| `P1.00` | `SWO` | Optional trace / debug output pe test pad |
+| `P1.02` | `P1.02` | Intrare buton `SW_DN` |
+| `P1.08` | `IMU_INT2` | A doua intrerupere de la `BMA423` |
+| `SWDIO` | `SWDIO` | Debug/programare prin `J2` |
+| `SWDCLK` | `SWDCLK` | Clock debug/programare prin `J2` |
+| `D-` | `D-` | USB FS data minus de la conectorul USB-C, prin protectia ESD |
+| `D+` | `D+` | USB FS data plus de la conectorul USB-C, prin protectia ESD |
+| `VBUS` | `VBUS` | Detectie/alimentare USB venita din conectorul USB-C |
+
+Pinii `P0.04`, `P0.09`, `P1.01`, `P1.03`-`P1.07`, `P1.09`-`P1.15` si `P0.19`-`P0.31` apar in simbolul MCU, dar in schema curenta nu au o functie periferica documentata explicit; pot ramane disponibili pentru extensii sau pentru iteratii viitoare ale designului.
 
 ## Fisiere de Manufacturing
 
